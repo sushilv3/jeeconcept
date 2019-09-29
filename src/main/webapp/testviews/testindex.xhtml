@@ -1,0 +1,63 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Facelet Title</title>
+	<h:outputStylesheet library="css" name="bulma.min.css" />
+</h:head>
+<h:body>
+	<h:panelGroup layout="block" styleClass="container">
+		<!-- layout=block(div) layout="inline"(span)  -->
+		<br />
+		<br />
+		<h:outputLink value="https://javaserverfaces.github.io/"
+			styleClass="is-size-4-desktop has-text-success">View JSF Docs</h:outputLink>
+
+		<br />
+		<br />
+		<br />
+
+		<h:outputText value="CDI(Container Dependency Injection) Bean Scopes"
+			styleClass="is-size-4-desktop" />
+		<!--  span -->
+		<br />
+		<br />
+		<h:link outcome="/testviews/testpage1"
+			value="Session Scope (Registration)" />
+		<br />
+		<br />
+
+		<h:link value="View Scope" outcome="/testviews/testviewscope" />
+		<br />
+		<br />
+
+		<h:link value="Coversetion Scope" outcome="/testviews/exetestpage1" />
+
+		<br />
+		<br />
+		<h:outputText value="Main Components" styleClass="is-size-4-desktop" />
+
+		<br />
+		<br />
+
+		<h:link outcome="/testviews/testactions"
+			value="Buttons and Links (With Query Params)" />
+		<br />
+		<br />
+
+		<h:link value="Action vs ActionListeners"
+			outcome="/testviews/testaction2" />
+		<br />
+		<br />
+
+		<h:link value="Ajax Support" outcome="/testviews/testajax" />
+		<br />
+		<br />
+
+		<h:link value="Ajax 1 (Reactive DropDown)" outcome="/testviews/testajax1" />
+	</h:panelGroup>
+
+</h:body>
+</html>

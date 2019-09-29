@@ -1,0 +1,73 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core" 
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<title>Button Actions</title>
+	<h:outputStylesheet library="css" name="bulma.min.css" />
+</h:head>
+<h:body>
+
+	<h:panelGroup layout="block" styleClass="container">
+	<br/><br/>
+		<h:outputText value="Listeners" styleClass="is-size-5-desktop"/> <br/>
+		<h:form id="form">
+			<img id="ajaxStatus" src="#{request.contextPath}/resources/images/loading.gif"/> <br/>
+			
+			<h:selectOneMenu value="#{listenersBean.selectedState}">
+				<f:selectItems value="#{listenersBean.states}"/>
+				<f:ajax event="change" listener="#{listenersBean.fetchCities}" render="cities"/>
+			</h:selectOneMenu> #{'    '}
+			<h:selectOneMenu value="#{listenersBean.selectedCity}" id="cities">
+				<f:selectItems value="#{listenersBean.cities}"/>
+				<f:ajax event="change" listener="#{listenersBean.doSomething}" render="cities"/>
+			</h:selectOneMenu> <br/>
+			
+			<h:outputText value="" styleClass="is-size-5-desktop has-text-info"/> <br/> <br/>
+			<h:panelGroup layout="block" id="pGroup" rendered="#{listenersBean.visible}">
+				<h:inputText value="#{listenersBean.value1}" id="value1" /> <br/>
+				<h:inputText value="#{listenersBean.value2}" id="value2" /> <br/>
+				<h:inputText value="#{listenersBean.value3}" id="value3" /> <br/>
+			</h:panelGroup>
+		
+			<h:inputText value="#{listenersBean.value}" p:placeholder="Ajax Enabled Input">
+				<f:ajax event="blur" execute="value1 value2" listener="#{listenersBean.ajaxMethod('value')}" 
+				render="outValue" onevent="ajaxHandler"/>
+			</h:inputText><br/>
+			
+			<h:outputText value="#{listenersBean.visible}" rendered="#{listenersBean.visible}" id="sample"/> <br/>
+			<h:outputText value="#{listenersBean.result}" styleClass="is-size-4-desktop" id="outValue"/> <br/>
+			<h:button value="Go Back" outcome="/index" styleClass="button is-primary"></h:button> #{'    '}
+			
+			<h:commandButton value="Action Listener 1"  action="#{listenersBean.action}" 
+				actionListener="#{listenersBean.preAction}" styleClass="button is-info"></h:commandButton> #{'   '}
+			
+			<h:commandButton value="Action Listener 2" action="#{listenersBean.action}" 
+				actionListener="#{listenersBean.preAction}" styleClass="button is-light"></h:commandButton> #{'    '}
+			
+			<h:commandButton value="Action Listener 3" action="#{listenersBean.action}" 
+				actionListener="#{listenersBean.preAction}" styleClass="button is-dark"></h:commandButton>
+				
+		</h:form>
+	</h:panelGroup>
+	<script>
+		const ajaxStatusEl = document.querySelector("#ajaxStatus");
+		ajaxStatusEl.style.visibility = "hidden";
+		function ajaxHandler(data) {
+			
+			console.table(data);
+			if(data.status === 'complete') {
+				console.log('Request Completed.')
+				ajaxStatus.style.visibility = "hidden";
+			}
+			
+			if(data.status === 'begin') {
+				console.log('Request Started..')
+				ajaxStatusEl.style.visibility = "visible";
+			}
+		}
+	</script>
+</h:body>
+</html>

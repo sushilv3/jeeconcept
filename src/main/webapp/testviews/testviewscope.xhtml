@@ -1,0 +1,50 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>Page 1</title>
+	<h:outputStylesheet library="css" name="bulma.min.css" />
+</h:head>
+<h:body>
+
+	<h:form id="form">
+
+		<h1>Test View Scope</h1>
+		<h:outputText value="Service Provider" />
+		<h:selectOneMenu value="#{testContactBean.selectedServiceProvider}">
+
+			<f:selectItems value="#{testContactBean.serviceProviders}">
+
+			</f:selectItems>
+
+		</h:selectOneMenu>
+		<br />
+		<br />
+		<h:inputText value="#{testContactBean.contact}"
+			p:placeholder="contact">
+		</h:inputText>
+		<h:commandButton action="#{testContactBean.addNew}"
+			value="Add New Contact" styleClass="button is-dark"></h:commandButton>
+
+		<br />
+		<br />
+
+		<h:dataTable value="#{testContactBean.contacts}"
+			var="contactDetails">
+			<h:column>
+				<f:facet name="header">Contact</f:facet>
+				<h:outputText value="#{contactDetails.number}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Service Provider</f:facet>
+				<h:outputText value="#{contactDetails.serviceProvider}" />
+			</h:column>
+		</h:dataTable>
+	</h:form>
+
+</h:body>
+</html>

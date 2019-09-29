@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>Page 1</title>
+	<h:outputStylesheet library="css" name="bulma.min.css" />
+
+</h:head>
+<h:body>
+
+	<h:form id="form">
+		<h:outputText value="Buttons(Action)" />
+		<br />
+		<br />
+		<h:inputText value="#{testActionBean2.value}" p:placeholder="value" id="value" />
+
+		<h:inputText value="#{testActionBean2.name}" p:placeholder="name" id="name" />
+
+		<h:inputText value="#{testActionBean2.address}" p:placeholder="Enter Address" id="address">
+			
+			<f:ajax event="blur" execute="value name address"
+				listener="#{testActionBean2.ajaxMethod}"
+				render="out_value out_name out_address"	 />
+				
+		</h:inputText>
+		
+		<h:outputText value="#{testActionBean2.value}" id="out_value" /><br/>
+		<h:outputText value="#{testActionBean2.name}" id="out_name" /><br/>
+		
+		<h:outputText value="#{testActionBean2.address}" id="out_address" /><br/>
+
+	</h:form>
+
+</h:body>
+</html>
